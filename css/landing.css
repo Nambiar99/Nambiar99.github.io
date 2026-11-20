@@ -1,0 +1,383 @@
+
+/* =========================
+RESET
+========================= */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,body {
+	width: 100%;
+	min-height: 100%;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	overflow: hidden;
+}
+
+
+/* =========================
+MAIN LAYOUT
+========================= */
+
+.landing {
+	position: relative;
+	display: flex;
+	width: 100%;
+	height: 100svh;
+	overflow: hidden;
+}
+
+
+/* =========================
+WORLDS
+========================= */
+
+.world {
+	position: relative;
+	flex: 1;
+	height: 100%;
+	overflow: hidden;
+
+	display: flex;
+	align-items: center;
+
+	transition:
+		flex 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+		filter 0.5s ease;
+}
+
+
+/* DESIGN SIDE */
+
+.world-design {
+	background-image: url(../assets/dot_background.png);
+	background-repeat: repeat;
+	background-size: 100px 100px;
+	color: #25231F;
+
+	justify-content: flex-start;
+	padding: 8%;
+}
+
+
+/* DATA SIDE */
+
+.world-data {
+	background: url(../assets/dot_background.png), #1d2e4f;
+	background-repeat: repeat, no-repeat;
+	background-size: 100px 100px, cover;
+	background-blend-mode: multiply;
+	color: #F1F3F6;
+
+	justify-content: flex-end;
+	padding: 8%;
+}
+
+
+/* =========================
+HOVER EXPANSION
+========================= */
+
+.landing.active-design .world-design {
+flex: 1.25;
+}
+
+.landing.active-design .world-data {
+flex: 0.75;
+}
+
+.landing.active-data .world-data {
+flex: 1.25;
+}
+
+.landing.active-data .world-design {
+flex: 0.75;
+}
+
+
+/* =========================
+CONTENT
+========================= */
+
+.world-content {
+position: relative;
+z-index: 2;
+width: 100%;
+max-width: 480px;
+
+transition:
+	transform 0.5s ease,
+	opacity 0.4s ease;
+}
+
+.world-design .world-content {
+text-align: left;
+}
+
+.world-data .world-content {
+text-align: right;
+margin-left: auto;
+}
+
+
+/* EYEBROW */
+
+.eyebrow {
+display: block;
+font-size: 11px;
+letter-spacing: 4px;
+font-weight: 600;
+margin-bottom: 24px;
+opacity: 0.65;
+}
+
+
+/* TITLES */
+
+.world h1 {
+font-size: clamp(3.5rem, 7vw, 8rem);
+font-weight: 700;
+letter-spacing: -7px;
+line-height: 0.95;
+
+margin-bottom: 28px;
+
+transition: transform 0.5s ease;
+}
+
+.world-design h1 span {
+color: #F25016;
+}
+
+.world-data h1 span {
+color: #25231F;
+}
+
+
+/* DESCRIPTION */
+
+.description {
+font-size: clamp(14px, 1.2vw, 18px);
+line-height: 1.7;
+max-width: 320px;
+opacity: 0.7;
+}
+
+.world-data .description {
+margin-left: auto;
+}
+
+
+/* =========================
+LINKS
+========================= */
+
+.explore-link-design{
+	margin-top: 15px;
+	display: inline-flex;
+	padding: 15px;
+	text-decoration: none;
+	background-color: #25231F;
+	color: whitesmoke;
+	border-radius: 10px;
+	transition: 0.1s ease-in-out;
+}
+.explore-link-design:hover {
+	padding: 16px;
+}
+.explore-link-technical{
+	margin-top: 15px;
+	display: inline-flex;
+	padding: 15px;
+	text-decoration: none;
+	background-color: whitesmoke;
+	color: #25231F;
+	border-radius: 10px;
+	transition: 0.1s ease-in-out;
+}
+.explore-link-technical:hover {
+	padding: 16px;
+}
+
+/* =========================
+BACKGROUND LABELS
+========================= */
+
+.background-label {
+position: absolute;
+bottom: 8%;
+font-size: clamp(4rem, 12vw, 14rem);
+font-weight: 800;
+letter-spacing: -8px;
+white-space: nowrap;
+opacity: 0.035;
+pointer-events: none;
+}
+
+.world-design .background-label {
+left: 0;
+}
+
+.world-data .background-label {
+right: 0;
+}
+
+
+/* =========================
+PORTRAIT
+========================= */
+
+.portrait-container {
+position: absolute;
+
+left: 50%;
+bottom: 0;
+
+transform: translateX(-50%);
+
+height: 82%;
+width: 40%;
+
+display: flex;
+align-items: flex-end;
+justify-content: center;
+
+z-index: 5;
+
+pointer-events: none;
+
+transition:
+	transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.portrait {
+height: 100%;
+max-width: 100%;
+
+object-fit: contain;
+object-position: bottom;
+
+filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.12));
+}
+
+
+/* Portrait shifts subtly toward active side */
+
+.landing.active-design .portrait-container {
+transform: translateX(-58%);
+}
+
+.landing.active-data .portrait-container {
+transform: translateX(-42%);
+}
+
+/* =========================
+FOOTER
+========================= */
+
+.site-footer-left {
+position: absolute;
+bottom: 30px;
+left: 5%;
+right: 5%;
+
+display: flex;
+justify-content: space-between;
+
+z-index: 10;
+
+font-size: 15px;
+letter-spacing: 1px;
+
+color: rgba(40, 39, 39, 0.55);
+
+pointer-events: none;
+}
+
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+	body {
+		overflow: auto;
+	}
+
+	.landing {
+		flex-direction: column;
+		height: auto;
+		min-height: 100svh;
+	}
+
+	.world {
+		min-height: 50svh;
+		padding: 8%;
+	}
+
+	.world-design {
+		justify-content: flex-start;
+		align-items: flex-start;
+	}
+
+	.world-data {
+		justify-content: flex-end;
+		align-items: flex-start;
+	}
+
+	.world-data .world-content {
+		text-align: left;
+		margin-left: 0;
+	}
+
+	.world-data .description {
+		margin-left: 0;
+	}
+
+	.world h1 {
+		font-size: clamp(3.5rem, 15vw, 6rem);
+		letter-spacing: -4px;
+	}
+
+	.portrait-container {
+		position: absolute;
+		height: 38%;
+		width: 55%;
+		top: 31%;
+		bottom: auto;
+	}
+
+	.portrait {
+		height: 100%;
+	}
+
+	.landing.active-design .portrait-container,
+	.landing.active-data .portrait-container {
+		transform: translateX(-50%);
+	}
+
+	.site-header {
+		top: 20px;
+	}
+
+	.site-footer {
+		position: relative;
+		padding: 20px 5%;
+		left: auto;
+		right: auto;
+		bottom: auto;
+		background: #151A22;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.background-label {
+		font-size: 20vw;
+	}
+
+}
